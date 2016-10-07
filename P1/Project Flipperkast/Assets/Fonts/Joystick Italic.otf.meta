@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f692c903417439a4baa274ba5d8187f4
+timeCreated: 1474874330
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Joystick
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 139f30918be886a43b35249824e8da0b, type: 3}
+  - {fileID: 12800000, guid: dd84609201f762748b6f5ab9bfb279cf, type: 3}
+  - {fileID: 12800000, guid: 011d71ebc11d1b24c9c6e514f456cb1f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
