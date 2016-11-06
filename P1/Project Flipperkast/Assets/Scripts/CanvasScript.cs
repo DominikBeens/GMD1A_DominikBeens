@@ -20,7 +20,7 @@ public class CanvasScript : MonoBehaviour
     
     public void StartGame()
     {
-        Time.timeScale = 1;             //als je op start klikt loopt de tijd gewoon verder en kun je het spel spelen, het intro paneel wordt inactief en het score paneel actief, ook wordt er een audioclip afgespeeld
+        Time.timeScale = 1;             //als je op start klikt loopt de tijd gewoon verder en kun je het spel spelen, het intro paneel wordt inactief en het score paneel actief, ook wordt er een audioclip afgespeeld die in het script AudioManager staat
         introPanel.SetActive(false);
         scorePanel.SetActive(true);
 

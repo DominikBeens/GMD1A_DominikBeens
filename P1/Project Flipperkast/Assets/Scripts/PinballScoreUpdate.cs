@@ -34,7 +34,5 @@ public class PinballScoreUpdate : MonoBehaviour
         scorePanel.SetActive(false);
         endPanel.SetActive(true);
         endScore.text = "" + BumperScoreUpdate.score;   //de score tekst die op het einde paneel staat wordt gelijk gesteld aan de behaalde score
-
-        AudioManager.defeat.Play();
     }
 }

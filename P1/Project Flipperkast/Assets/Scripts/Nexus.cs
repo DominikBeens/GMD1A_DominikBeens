@@ -4,10 +4,7 @@ using UnityEngine.UI;
 
 public class Nexus : MonoBehaviour
 {
-
-    public int maxHealth = 100;
-    public static int curHealth;
-
+    public static int curHealth;        //levens van de nexus
     public GameObject nexus;
 
     public GameObject scorePanel;
@@ -18,6 +15,9 @@ public class Nexus : MonoBehaviour
 
     public ParticleSystem deathBlink;
     public ParticleSystem deathParticle;
+
+    public GameObject flipperkast;
+    public GameObject flipperkastKapot;
 
     void Start ()   //het paneel waarmee wordt aangegeven dat je hebt gewonnen is inactief, de levens van de nexus wordt op 100 gezet en de particles die bij de dood van de nexus horen worden gepauseerd
     {
@@ -34,6 +34,9 @@ public class Nexus : MonoBehaviour
             nexus.GetComponent<Collider>().enabled = false;
             deathBlink.Play();
             deathParticle.Play();
+
+            flipperkast.SetActive(false);       //de flipperkast wordt inactief en de 'kapotte' flipperkast wordt actief wanneer de nexus kapot is gemaakt
+            flipperkastKapot.SetActive(true);
         }
 
         if (curHealth == 0 && PinballScoreUpdate.pinballs == 0)    //als de levens van de nexus 0 zijn en er geen pinballs meer over zijn, wordt het paneel dat aangeeft dat je hebt gewonnen geactiveerd en het score paneel wordt inactief
@@ -42,8 +45,6 @@ public class Nexus : MonoBehaviour
             winPanel.SetActive(true);
             winScore.text = "" + BumperScoreUpdate.score;
             Time.timeScale = 0;                                     //ook wordt de tijd weer stop gezet
-
-            AudioManager.victory.Play();
         }
 
     }
