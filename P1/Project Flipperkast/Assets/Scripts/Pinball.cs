@@ -12,11 +12,8 @@ public class Pinball : MonoBehaviour
     {
         if (gameObject.tag == "Pinball")
         {
-            pinball.SetActive(false);   //wordt hij inactief
-            PinballScoreUpdate.pinballs -= 1;   //en word er van de pinball tekst (de counter) die in het script PinballScoreUpdate staat 1 afgetrekt
-
-            pinball.transform.position = pinballSpawn.transform.position;   //daarna word de pinball naar zijn spawnbase gemoved/geteleport
-            pinball.SetActive(true);    //en wordt hij weer actief gezet
+            PinballScoreUpdate.pinballs -= 1;   //wordt er van de pinball tekst (de counter) die in het script PinballScoreUpdate staat 1 afgetrekt
+            pinball.transform.position = pinballSpawn.transform.position;   //daarna wordt de pinball naar zijn spawnbase geteleport
         }
 
         if (PinballScoreUpdate.pinballs == 0)
