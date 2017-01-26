@@ -38,7 +38,7 @@ public class Gun : MonoBehaviour
 
             if (Physics.Raycast(rayOrigin, cam.transform.forward, out hit, gunRange))
             {
-                print(hit.collider.gameObject.name);
+//              print(hit.collider.gameObject.name);
                 Enemy health = hit.collider.GetComponent<Enemy>();
 
                 if (health != null)
@@ -52,7 +52,7 @@ public class Gun : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == ("Enemy"))
                 {
- //                   GameObject bulletHitSpawn = (GameObject)Instantiate(bulletHit, hit.transform.position, Quaternion.identity);
+ //                 GameObject bulletHitSpawn = (GameObject)Instantiate(bulletHit, hit.transform.position, Quaternion.identity);
                 }
 
             }
@@ -87,6 +87,5 @@ public class Gun : MonoBehaviour
         GameObject bulletFireSpawn = (GameObject)Instantiate(bulletFire, bulletFireEmpty.transform.position, bulletFireEmpty.transform.rotation);
         yield return new WaitForSeconds(0.2f);
         Destroy(bulletFireSpawn);
-        yield return new WaitForSeconds(0.5f);
     }
 }

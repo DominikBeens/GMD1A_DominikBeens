@@ -6,16 +6,20 @@ public class Binoculars : MonoBehaviour
 {
 
     public Animator animator;
+
     public bool usingBinoculars = false;
+
     public GameObject overlay;
     public GameObject binoculars;
     public Camera cam;
+
     public float zoomInFOV = 15f;
     public float zoomOutFOV;
-    public PlayerController playerController;
     public float zoomOutMouseSens;
 
-	void Start ()
+    public PlayerController playerController;
+
+    void Start ()
     {
         zoomOutFOV = cam.fieldOfView;
         zoomOutMouseSens = playerController.mouseSensitivity;

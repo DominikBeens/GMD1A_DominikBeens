@@ -7,11 +7,6 @@ public class Weaponchange : MonoBehaviour
 
     public int currentWeapon;
     public List<GameObject> weapons = new List<GameObject>();
-
-    void Start ()
-    {
-
-	}
 	
 	void Update ()
     {
@@ -34,11 +29,6 @@ public class Weaponchange : MonoBehaviour
             {
                 weapons[0].SetActive(false);
                 weapons[1].SetActive(true);
-            }
-
-            if (weapons.Count == 0)
-            {
-                return;
             }
 
             if (weapons.Count == 1)

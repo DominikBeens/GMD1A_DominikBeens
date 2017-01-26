@@ -28,11 +28,6 @@ public class UI_Manager : MonoBehaviour
     public GameObject radioPanel;
     public GameObject gameoverPanel;
 
-    void Start ()
-    {
-
-    }
-
     void Update ()
     {
         Color color = fadeImage.color;

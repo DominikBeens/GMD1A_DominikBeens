@@ -8,7 +8,6 @@ public class PlayerStats : MonoBehaviour
     public UI_Manager uim;
 
     public int health = 100;
-
     public GameObject player;
 
 	void Start ()

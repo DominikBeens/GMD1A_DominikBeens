@@ -44,7 +44,6 @@ public class Knife : MonoBehaviour
 
         }
 
-
         if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("KnifeSwing"))
         {
             canDamage = false;
