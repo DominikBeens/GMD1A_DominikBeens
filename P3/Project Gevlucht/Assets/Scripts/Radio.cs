@@ -19,15 +19,15 @@ public class Radio : MonoBehaviour
         {
             uim.triggerPanelText.text = "Press E to use the radio";
             uim.triggerPanel.SetActive(true);
-        }
 
-        if (Input.GetKeyDown(KeyCode.E) && radioAudio.isPlaying == false)
-        {
-            radioAudio.Play();
-        }
-        else if (Input.GetKeyDown(KeyCode.E) && radioAudio.isPlaying == true)
-        {
-            radioAudio.Pause();
+            if (Input.GetKeyDown(KeyCode.E) && radioAudio.isPlaying == false)
+            {
+                radioAudio.Play();
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && radioAudio.isPlaying == true)
+            {
+                radioAudio.Pause();
+            }
         }
     }
 
