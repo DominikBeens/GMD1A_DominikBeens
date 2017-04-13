@@ -14,8 +14,6 @@ public class Closet : MonoBehaviour
     public int waterbottleListIndex;
     public int medkitListIndex;
 
-    public bool canDrink;
-
     void Start()
     {
         foreach (GameObject g in waterbottles)
