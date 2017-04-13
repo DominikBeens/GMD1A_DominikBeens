@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour
     public GameObject scrollView;
     public Text conversationText;
     public GameObject conversationButtons;
+    public GameObject conversationButtonA;
+    public GameObject conversationButtonB;
+    public GameObject quitConversationButton;
 
     public Text optionAText;
     public Text optionBText;
@@ -53,4 +56,10 @@ public class UIManager : MonoBehaviour
     public Text resumeButtonText;
     public GameObject gamePausedTextObject;
     public Text gamePausedText;
+
+    [Header("Closet")]
+    public GameObject closetInterface;
+    public GameObject layoutGroup;
+    public GameObject medkitButton;
+    public GameObject waterbottleButton;
 }

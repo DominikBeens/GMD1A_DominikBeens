@@ -7,6 +7,7 @@ public class Quest01 : MonoBehaviour
 {
 
     public UIManager uim;
+    public ObjectDescriptions objDesc;
 
     public GameObject ship;
     public GameObject endOfRoute;
@@ -16,8 +17,6 @@ public class Quest01 : MonoBehaviour
 
     public bool quest01Active;
     public bool quest1Ladder;
-
-    public ObjectDescriptions objDesc;
 
 	void Start ()
     {

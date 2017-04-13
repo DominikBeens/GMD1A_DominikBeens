@@ -17,19 +17,22 @@ public class CameraMovement : MonoBehaviour
 
     void Update ()
     {
-        if (player.transform.localPosition.z <= -1.7f)  //Left
+        //Left
+        if (player.transform.localPosition.z <= -1.7f)
         {
             cam.transform.position = Vector3.Lerp(cam.transform.position, waypointLeft.transform.position, (moveSpeed * Time.deltaTime));
             cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, waypointLeft.transform.rotation, (turnSpeed * Time.deltaTime));
         }
 
-        if (player.transform.localPosition.z >= 4.0f)   //Right
+        //Right
+        if (player.transform.localPosition.z >= 4.0f)
         {
             cam.transform.position = Vector3.Lerp(cam.transform.position, waypointRight.transform.position, (moveSpeed * Time.deltaTime));
             cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, waypointRight.transform.rotation, (turnSpeed * Time.deltaTime));
         }
 
-        if (player.transform.localPosition.z >= -1.7f && player.transform.localPosition.z <= 4.0f)  //Mid
+        //Middle
+        if (player.transform.localPosition.z >= -1.7f && player.transform.localPosition.z <= 4.0f)
         {
             cam.transform.position = Vector3.Lerp(cam.transform.position, waypointMid.transform.position, (moveSpeed * Time.deltaTime));
             cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, waypointMid.transform.rotation, (turnSpeed * Time.deltaTime));

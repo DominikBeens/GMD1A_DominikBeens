@@ -13,6 +13,8 @@ public class IntroGameManager : MonoBehaviour
 
     public bool startGame;
 
+    public GameObject startGameButton;
+    public GameObject quitGameButton;
     public Text startGameButtonText;
     public Text quitGameButtonText;
 
@@ -31,9 +33,13 @@ public class IntroGameManager : MonoBehaviour
 
     public IEnumerator StoryLoop()
     {
-        storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, 0);
-        startGameButtonText.color = new Color(startGameButtonText.color.r, startGameButtonText.color.g, startGameButtonText.color.b, 0);
-        quitGameButtonText.color = new Color(quitGameButtonText.color.r, quitGameButtonText.color.g, quitGameButtonText.color.b, 0);
+        startGameButton.SetActive(false);
+        quitGameButton.SetActive(false);
+
+        storyText.canvasRenderer.SetAlpha(0.01f);
+        skipText.canvasRenderer.SetAlpha(0.01f);
+        startGameButtonText.canvasRenderer.SetAlpha(0.01f);
+        quitGameButtonText.canvasRenderer.SetAlpha(0.01f);
 
         for (int i = 0; i < storyTList.Count; i++)
         {
@@ -42,39 +48,28 @@ public class IntroGameManager : MonoBehaviour
                 storyText.text = storyTList[0];
                 storyText.fontSize = 30;
 
-                while (storyText.color.a < 1.0f)
-                {
-                    storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, storyText.color.a + (Time.deltaTime));
-                    yield return null;
-                }
+                storyText.CrossFadeAlpha(1f, 1.5f, false);
 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
 
-                while (startGameButtonText.color.a < 1.0f)
-                {
-                    startGameButtonText.color = new Color(startGameButtonText.color.r, startGameButtonText.color.g, startGameButtonText.color.b, startGameButtonText.color.a + (Time.deltaTime));
-                    quitGameButtonText.color = new Color(quitGameButtonText.color.r, quitGameButtonText.color.g, quitGameButtonText.color.b, quitGameButtonText.color.a + (Time.deltaTime));
-                    yield return null;
-                }
+                startGameButton.SetActive(true);
+                quitGameButton.SetActive(true);
+                startGameButtonText.CrossFadeAlpha(1f, 1f, false);
+                quitGameButtonText.CrossFadeAlpha(1f, 1f, false);
 
                 yield return StartCoroutine(WaitForStart());
 
-                while (startGameButtonText.color.a > 0.0f)
-                {
-                    startGameButtonText.color = new Color(startGameButtonText.color.r, startGameButtonText.color.g, startGameButtonText.color.b, startGameButtonText.color.a - (Time.deltaTime));
-                    quitGameButtonText.color = new Color(quitGameButtonText.color.r, quitGameButtonText.color.g, quitGameButtonText.color.b, quitGameButtonText.color.a - (Time.deltaTime));
-                    yield return null;
-                }
+                startGameButtonText.CrossFadeAlpha(0f, 1f, false);
+                quitGameButtonText.CrossFadeAlpha(0f, 1f, false);
 
                 yield return new WaitForSeconds(1);
 
-                while (storyText.color.a > 0.0f)
-                {
-                    storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, storyText.color.a - (Time.deltaTime));
-                    yield return null;
-                }
+                startGameButton.SetActive(false);
+                quitGameButton.SetActive(false);
 
-                yield return new WaitForSeconds(0.7f);
+                storyText.CrossFadeAlpha(0f, 1.5f, false);
+
+                yield return new WaitForSeconds(2);
             }
             else
             {
@@ -84,27 +79,14 @@ public class IntroGameManager : MonoBehaviour
                 skipText.text = ("Press or hold Space to continue");
                 skipText.fontSize = 15;
 
-                while (storyText.color.a < 1.0f)
-                {
-                    storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, storyText.color.a + (Time.deltaTime));
-                    yield return null;
-                }
-
-                while (skipText.color.a < 1.0f)
-                {
-                    skipText.color = new Color(skipText.color.r, skipText.color.g, skipText.color.b, skipText.color.a + (Time.deltaTime * 1.5f));
-                    yield return null;
-                }
+                storyText.CrossFadeAlpha(1f, 1f, false);
+                skipText.CrossFadeAlpha(1f, 1f, false);
 
                 yield return StartCoroutine(WaitForInput());
 
-                while (storyText.color.a > 0.0f)
-                {
-                    storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, storyText.color.a - (Time.deltaTime));
-                    yield return null;
-                }
+                storyText.CrossFadeAlpha(0f, 1f, false);
 
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(1);
             }
 
             if(i == storyTList.Count - 1)

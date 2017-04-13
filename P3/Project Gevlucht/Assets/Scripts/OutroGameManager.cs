@@ -12,6 +12,8 @@ public class OutroGameManager : MonoBehaviour
     public Text storyText;
     public Text skipText;
 
+    public GameObject restartGameButton;
+    public GameObject quitGameButton;
     public Text restartGameButtonText;
     public Text quitGameButtonText;
 
@@ -25,19 +27,15 @@ public class OutroGameManager : MonoBehaviour
         StartCoroutine(StoryLoop());
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Intro");
-        }
-    }
-
     public IEnumerator StoryLoop()
     {
-        storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, 0);
-        restartGameButtonText.color = new Color(restartGameButtonText.color.r, restartGameButtonText.color.g, restartGameButtonText.color.b, 0);
-        quitGameButtonText.color = new Color(quitGameButtonText.color.r, quitGameButtonText.color.g, quitGameButtonText.color.b, 0);
+        restartGameButton.SetActive(false);
+        quitGameButton.SetActive(false);
+
+        storyText.canvasRenderer.SetAlpha(0.01f);
+        skipText.canvasRenderer.SetAlpha(0.01f);
+        restartGameButtonText.canvasRenderer.SetAlpha(0.01f);
+        quitGameButtonText.canvasRenderer.SetAlpha(0.01f);
 
         for (int i = 0; i < storyT01List.Count; i++)
         {
@@ -46,21 +44,15 @@ public class OutroGameManager : MonoBehaviour
                 storyText.text = storyT01List[storyT01List.Count - 1];
                 storyText.fontSize = 30;
 
-                while (storyText.color.a < 1.0f)
-                {
-                    storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, storyText.color.a + (Time.deltaTime));
-                    skipText.color = new Color(skipText.color.r, skipText.color.g, skipText.color.b, skipText.color.a - (Time.deltaTime * 1.5f));
-                    yield return null;
-                }
+                storyText.CrossFadeAlpha(1f, 1.5f, false);
+                skipText.CrossFadeAlpha(0f, 1f, false);
 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
 
-                while (restartGameButtonText.color.a < 1.0f)
-                {
-                    restartGameButtonText.color = new Color(restartGameButtonText.color.r, restartGameButtonText.color.g, restartGameButtonText.color.b, restartGameButtonText.color.a + (Time.deltaTime));
-                    quitGameButtonText.color = new Color(quitGameButtonText.color.r, quitGameButtonText.color.g, quitGameButtonText.color.b, quitGameButtonText.color.a + (Time.deltaTime));
-                    yield return null;
-                }
+                restartGameButton.SetActive(true);
+                quitGameButton.SetActive(true);
+                restartGameButtonText.CrossFadeAlpha(1f, 1f, false);
+                quitGameButtonText.CrossFadeAlpha(1f, 1f, false);
             }
             else
             {
@@ -70,27 +62,14 @@ public class OutroGameManager : MonoBehaviour
                 skipText.text = ("Press or hold Space to continue");
                 skipText.fontSize = 15;
 
-                while (storyText.color.a < 1.0f)
-                {
-                    storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, storyText.color.a + (Time.deltaTime));
-                    yield return null;
-                }
-
-                while (skipText.color.a < 1.0f)
-                {
-                    skipText.color = new Color(skipText.color.r, skipText.color.g, skipText.color.b, skipText.color.a + (Time.deltaTime * 1.5f));
-                    yield return null;
-                }
+                storyText.CrossFadeAlpha(1f, 1f, false);
+                skipText.CrossFadeAlpha(1f, 1f, false);
 
                 yield return StartCoroutine(WaitForInput());
 
-                while (storyText.color.a > 0.0f)
-                {
-                    storyText.color = new Color(storyText.color.r, storyText.color.g, storyText.color.b, storyText.color.a - (Time.deltaTime));
-                    yield return null;
-                }
+                storyText.CrossFadeAlpha(0f, 1f, false);
 
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(1);
             }
         }
     }

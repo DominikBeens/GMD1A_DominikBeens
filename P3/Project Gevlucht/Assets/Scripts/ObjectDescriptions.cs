@@ -7,11 +7,9 @@ public class ObjectDescriptions : MonoBehaviour
 {
 
     public UIManager uim;
-
     public Quest02 quest02;
 
     public bool descriptionsOn;
-
     public int randomDialogue;
 
     public void OnTriggerStay(Collider col)
@@ -30,37 +28,32 @@ public class ObjectDescriptions : MonoBehaviour
                         if (quest02.quest02Active)
                         {
                             uim.dialogueTextObject.SetActive(true);
-                            StartCoroutine(DialogueFadeIn());
+                            StartCoroutine(DialogueFadeIn("'Got it'"));
                             quest02.gotHammer = true;
-                            uim.dialogueText.text = "'Got it'";
                         }
                         else
                         {
                             uim.dialogueTextObject.SetActive(true);
-                            StartCoroutine(DialogueFadeIn());
-                            uim.dialogueText.text = "'There's a hammer inside, good to know.'";
+                            StartCoroutine(DialogueFadeIn("'There's a hammer inside, good to know.'"));
                         }
                     }
 
                     if (col.gameObject.tag == "InteractableCrate2")
                     {
                         uim.dialogueTextObject.SetActive(true);
-                        StartCoroutine(DialogueFadeIn());
-                        uim.dialogueText.text = "'There's some smelly fisherman stuff in there'";
+                        StartCoroutine(DialogueFadeIn("'There's some smelly fisherman stuff in there'"));
                     }
 
                     if (col.gameObject.tag == "InteractableCupboard")
                     {
                         uim.dialogueTextObject.SetActive(true);
-                        StartCoroutine(DialogueFadeIn());
-                        uim.dialogueText.text = "'Seems like these cupboards are jammed, I can't get them open.'";
+                        StartCoroutine(DialogueFadeIn("'Seems like these cupboards are jammed, I can't get them open.'"));
                     }
 
                     if (col.gameObject.tag == "InteractableAnchor")
                     {
                         uim.dialogueTextObject.SetActive(true);
-                        StartCoroutine(DialogueFadeIn());
-                        uim.dialogueText.text = "'Maybe I'll need that if something happens'";
+                        StartCoroutine(DialogueFadeIn("'Maybe I'll need that if something happens'"));
                     }
 
                     if (col.gameObject.tag == "InteractableView")
@@ -70,20 +63,17 @@ public class ObjectDescriptions : MonoBehaviour
                         if (randomDialogue == 0)
                         {
                             uim.dialogueTextObject.SetActive(true);
-                            StartCoroutine(DialogueFadeIn());
-                            uim.dialogueText.text = "'Its hard to believe what has happend in the past few hours..'";
+                            StartCoroutine(DialogueFadeIn("'Its hard to believe what has happend in the past few hours..'"));
                         }
                         else if (randomDialogue == 1)
                         {
                             uim.dialogueTextObject.SetActive(true);
-                            StartCoroutine(DialogueFadeIn());
-                            uim.dialogueText.text = "'I hope my parents are doing fine over there..'";
+                            StartCoroutine(DialogueFadeIn("'I hope my parents are doing fine over there..'"));
                         }
                         else if (randomDialogue == 2)
                         {
                             uim.dialogueTextObject.SetActive(true);
-                            StartCoroutine(DialogueFadeIn());
-                            uim.dialogueText.text = "'The view is stunning but I can't help but think about what's going on over there right now.'";
+                            StartCoroutine(DialogueFadeIn("'The view is stunning but I can't help but think about what's going on over there right now.'"));
                         }
                     }
                 }
@@ -97,8 +87,10 @@ public class ObjectDescriptions : MonoBehaviour
         StartCoroutine(DialogueFadeOut());
     }
 
-    public IEnumerator DialogueFadeIn()
+    public IEnumerator DialogueFadeIn(string s)
     {
+        uim.dialogueText.text = s;
+
         uim.dialogueText.canvasRenderer.SetAlpha(0.01f);
         uim.dialogueText.CrossFadeAlpha(1f, 1f, false);
 

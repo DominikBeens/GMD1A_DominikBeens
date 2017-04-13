@@ -13,9 +13,7 @@ public class GameManager : MonoBehaviour
     public float speed = 0.5f;
 
     public GameObject player;
-
     public GameObject playerStatsPanel;
-
     public GameObject ship;
     public GameObject endOfRoute;
 

@@ -7,12 +7,12 @@ public class Ladder : MonoBehaviour
 {
 
     public UIManager uim;
+    public Quest01 quest01;
+    public Quest02 quest02;
 
     public GameObject player;
-    public Quest02 quest02;
-    public bool canLoad;
 
-    public Quest01 quest01;
+    public bool canLoad;
 
     public void OnTriggerStay(Collider col)
     {

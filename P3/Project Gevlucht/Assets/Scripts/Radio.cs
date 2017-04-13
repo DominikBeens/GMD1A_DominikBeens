@@ -35,5 +35,4 @@ public class Radio : MonoBehaviour
     {
         uim.triggerPanel.SetActive(false);
     }
-
 }

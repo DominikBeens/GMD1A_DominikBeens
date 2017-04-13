@@ -6,17 +6,20 @@ using UnityEngine.UI;
 public class WaterBottle : MonoBehaviour
 {
 
+    public UIManager uim;
+    public PlayerStats ps;
+    public Closet closet;
+
     public bool canDrink;
 
-    public GameObject triggerPanel;
-    public Text triggerPanelText;
+    void Start()
+    {
+        uim = GameObject.FindGameObjectWithTag("UIM").GetComponent<UIManager>();
+        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        closet = GameObject.FindGameObjectWithTag("Closet").GetComponent<Closet>();
+    }
 
-    public GameObject dialogueTextObject;
-    public Text dialogueText;
-
-    public PlayerStats ps;
-	
-	void Update ()
+    void Update()
     {
         if (ps.water >= 65)
         {
@@ -27,56 +30,37 @@ public class WaterBottle : MonoBehaviour
         {
             canDrink = true;
         }
-	}
-
-    public void OnTriggerStay(Collider col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            triggerPanelText.text = "Press E to drink water";
-            triggerPanel.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.E) && canDrink)
-            {
-                ps.StopAllCoroutines();
-                ps.water += 35;
-                ps.StartRoutines();
-                triggerPanel.SetActive(false);
-                gameObject.GetComponent<MeshRenderer>().enabled = false;
-                gameObject.GetComponent<Collider>().enabled = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) && canDrink == false)
-            {
-                dialogueTextObject.SetActive(true);
-                StartCoroutine(DialogueFade());
-                dialogueText.text = "'I'm not that thirsty at the moment'";
-
-            }
-        }
     }
 
-    public void OnTriggerExit(Collider col)
+    public void UseWaterBottle()
     {
-        triggerPanel.SetActive(false);
+        if (canDrink)
+        {
+            ps.StopAllCoroutines();
+            ps.water += 35;
+            ps.StartRoutines();
+            Destroy(gameObject);
+            closet.DecreaseWaterBottle();
+        }
+        else if (canDrink == false)
+        {
+            uim.dialogueTextObject.SetActive(true);
+            StartCoroutine(DialogueFade());
+            uim.dialogueText.text = "'I'm not that thirsty at the moment'";
+        }
     }
 
     public IEnumerator DialogueFade()
     {
-        while (dialogueText.color.a < 1.0f)
-        {
-            dialogueText.color = new Color(dialogueText.color.r, dialogueText.color.g, dialogueText.color.b, dialogueText.color.a + (Time.deltaTime / 0.5f));
-            yield return null;
-        }
+        uim.dialogueText.canvasRenderer.SetAlpha(0.01f);
+        uim.dialogueText.CrossFadeAlpha(1f, 1f, false);
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.0f);
 
-        while (dialogueText.color.a > 0.0f)
-        {
-            dialogueText.color = new Color(dialogueText.color.r, dialogueText.color.g, dialogueText.color.b, dialogueText.color.a - (Time.deltaTime / 0.5f));
-            yield return null;
-        }
+        uim.dialogueText.CrossFadeAlpha(0f, 1f, false);
 
-        dialogueTextObject.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+
+        uim.dialogueTextObject.SetActive(false);
     }
 }

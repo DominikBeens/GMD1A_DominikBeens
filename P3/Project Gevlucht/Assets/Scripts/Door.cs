@@ -34,7 +34,7 @@ public class Door : MonoBehaviour
     public IEnumerator DoorMove()
     {
         anim.SetTrigger("DoorOpen");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         anim.SetTrigger("DoorClose");
     }
 }

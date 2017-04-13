@@ -19,10 +19,29 @@ public class Conversation : MonoBehaviour
 
     void Start ()
     {
-        uim.scrollView.SetActive(true);
-
         uim.optionAText.text = playerText[listIndex];
         uim.optionBText.text = playerText[listIndex + 1];
+    }
+
+    void Update()
+    {
+        if (playerText[listIndex] == "")
+        {
+            uim.conversationButtonA.SetActive(false);
+        }
+        else
+        {
+            uim.conversationButtonA.SetActive(true);
+        }
+
+        if (playerText[listIndex + 1] == "")
+        {
+            uim.conversationButtonB.SetActive(false);
+        }
+        else
+        {
+            uim.conversationButtonB.SetActive(true);
+        }
     }
 
     public void StartRoutine()
@@ -42,20 +61,29 @@ public class Conversation : MonoBehaviour
 
             if (pressedButtonA)
             {
-                uim.conversationText.text += "\nMom: " + targetText[listIndex];
+                uim.conversationText.text += "\n" + targetText[listIndex];
+                pressedButtonA = false;
             }
             else if (pressedButtonB)
             {
-                uim.conversationText.text += "\nMom: " + targetText[listIndex + 1];
+                uim.conversationText.text += "\n" + targetText[listIndex + 1];
+                pressedButtonB = false;
             }
 
             yield return null;
 
-            listIndex += 2;
-            uim.optionAText.text = playerText[listIndex];
-            uim.optionBText.text = playerText[listIndex + 1];
-
-            uim.conversationButtons.SetActive(true);
+            if (listIndex + 2 < targetText.Count - 1)
+            {
+                listIndex += 2;
+                uim.optionAText.text = playerText[listIndex];
+                uim.optionBText.text = playerText[listIndex + 1];
+                uim.conversationButtons.SetActive(true);
+                uim.quitConversationButton.SetActive(true);
+            }
+            else
+            {
+                uim.quitConversationButton.SetActive(true);
+            }
         }
     }
 
@@ -69,7 +97,7 @@ public class Conversation : MonoBehaviour
 
     public void AddChosenTextOptionA()
     {
-        StartCoroutine(PressedButtonA());
+        PressedButtonA();
         uim.conversationText.text = uim.conversationText.text + "\nYou: " + uim.optionAText.text;
 
         if (listIndex == playerText.Count - 2)
@@ -80,7 +108,7 @@ public class Conversation : MonoBehaviour
 
     public void AddChosenTextOptionB()
     {
-        StartCoroutine(PressedButtonB());
+        PressedButtonB();
         uim.conversationText.text = uim.conversationText.text + "\nYou: " + uim.optionBText.text;
 
         if (listIndex == playerText.Count - 2)
@@ -90,22 +118,18 @@ public class Conversation : MonoBehaviour
     }
 
 
-    public IEnumerator PressedButtonA()
+    public void PressedButtonA()
     {
         pressedButtonA = true;
         continueConversation = true;
         uim.conversationButtons.SetActive(false);
-        yield return new WaitForSeconds(2.5f);
-        pressedButtonA = false;
     }
 
-    public IEnumerator PressedButtonB()
+    public void PressedButtonB()
     {
         pressedButtonB = true;
         continueConversation = true;
         uim.conversationButtons.SetActive(false);
-        yield return new WaitForSeconds(2.5f);
-        pressedButtonB = false;
     }
 
     public void EndConversation()

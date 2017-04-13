@@ -12,6 +12,8 @@ TagManager:
   - InteractableCupboard
   - InteractableCrate2
   - InteractableView
+  - UIM
+  - Closet
   layers:
   - Default
   - TransparentFX

@@ -49,7 +49,7 @@ public class PlayerStats : MonoBehaviour
 
     public IEnumerator Water(float f)
     {
-        for (float ff = f; ff > 0; ff -= (Time.deltaTime))
+        for (float ff = f; ff > 0; ff -= (Time.deltaTime / 1.2f))
         {
             water = ff;
             uim.waterFill.fillAmount = water / 100;
