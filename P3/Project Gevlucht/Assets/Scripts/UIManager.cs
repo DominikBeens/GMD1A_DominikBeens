@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     public GameObject restartButton;
     public GameObject quitButton;
     public Text restartGameButtonText;
-    public Text quitGameButtonText;
+    public Text quitButtonText;
     public GameObject gameOverTextObject;
     public Text gameOverText;
 
@@ -54,6 +54,8 @@ public class UIManager : MonoBehaviour
     [Header("Ingame Menu")]
     public GameObject resumeButton;
     public Text resumeButtonText;
+    public GameObject quitGameButton;
+    public Text quitGameButtonText;
     public GameObject gamePausedTextObject;
     public Text gamePausedText;
 

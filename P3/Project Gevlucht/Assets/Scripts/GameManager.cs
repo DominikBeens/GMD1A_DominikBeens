@@ -104,8 +104,8 @@ public class GameManager : MonoBehaviour
 
         uim.restartGameButtonText.canvasRenderer.SetAlpha(0.01f);
         uim.restartGameButtonText.CrossFadeAlpha(1f, 1f, false);
-        uim.quitGameButtonText.canvasRenderer.SetAlpha(0.01f);
-        uim.quitGameButtonText.CrossFadeAlpha(1f, 1f, false);
+        uim.quitButtonText.canvasRenderer.SetAlpha(0.01f);
+        uim.quitButtonText.CrossFadeAlpha(1f, 1f, false);
     }
 
     public IEnumerator PauseGame()
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         uim.resumeButton.SetActive(true);
-        uim.quitButton.SetActive(true);
+        uim.quitGameButton.SetActive(true);
 
         uim.resumeButtonText.canvasRenderer.SetAlpha(0.01f);
         uim.resumeButtonText.CrossFadeAlpha(1f, 1f, false);
@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         uim.resumeButton.SetActive(false);
-        uim.quitButton.SetActive(false);
+        uim.quitGameButton.SetActive(false);
 
         uim.gamePausedText.CrossFadeAlpha(0f, 1f, false);
 
