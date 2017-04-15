@@ -62,4 +62,11 @@ public class UIManager : MonoBehaviour
     public GameObject layoutGroup;
     public GameObject medkitButton;
     public GameObject waterbottleButton;
+
+    [Header("Fishing")]
+    public GameObject fishingLoadbarPanel;
+    public Image fishingLoadbarFill;
+    public GameObject caughtFishPanel;
+    public Text caughtText;
+    public Image caughtImage;
 }

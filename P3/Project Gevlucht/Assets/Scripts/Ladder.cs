@@ -52,7 +52,7 @@ public class Ladder : MonoBehaviour
             yield return null;
         }
 
-        if (uim.loadbarFill.fillAmount >= 1)
+        if (uim.loadbarFill.fillAmount >= 0.99f)
         {
             player.SetActive(true);
             uim.loadbarFill.fillAmount = 0;

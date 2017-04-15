@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     public UIManager uim;
 
-    public bool start = false;
     public float speed = 0.5f;
 
     public GameObject player;

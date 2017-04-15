@@ -7,8 +7,6 @@ public class ShipInsideCol : MonoBehaviour
     public GameObject mainCam;
     public GameObject insideCam;
 
-    public GameObject player;
-
     public void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
