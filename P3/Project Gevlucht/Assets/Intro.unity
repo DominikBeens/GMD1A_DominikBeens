@@ -246,6 +246,12 @@ MonoBehaviour:
   - There was nothing Jayce could do but to listen to his mom. So he packed some extra
     clothes, grabbed some food and turned to his mom. She told him he had to go to
     the sea and find an empty ship to get to Turkey.
+  - One last time Jayce hugged his mom and ran away..
+  - He ran through his village towards the sea, luckily it was just a few meters so
+    he didn't have to run far.
+  - Once he was there he saw that there was only one ship left, it was an old and
+    rusty fishing ship. It didn't look that good but it was his only option..
+  - Jayce jumped on and figured he had to power it somehow..
   storyText: {fileID: 907606269}
   skipText: {fileID: 60568841}
   startGame: 0

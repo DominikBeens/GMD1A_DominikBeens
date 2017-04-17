@@ -221,15 +221,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storyT01List:
-  - ending one
-  - one
-  - 
-  - 
+  - You made it! You survived the trip and arrived in Turkey.
+  - Once in Turkey you followed the road to the nearest city and found some refugee
+    camp.
+  - You went to the lead of the camp and asked for shelter. They gave you a place
+    to stay and you were allowed to get a meal three times a day.
+  - That same day you called home with the phone you took with you from the ship.
+    Mom answered.
+  - The bombing had stopped and people were going back to their homes to see the damage
+    that has been done. Almost half of Jayce's home was destroyed.
+  - Mom was fine and said that dad was still in a pretty bad state but that he was
+    doing better now.
+  - 'You stayed in the camp for five more weeks and eventually reunited with your
+    parents, dad got better but his leg got amputated. '
+  - Together you started a new life in Turkey, away and safe from the war..
+  - And thats the memory of the 21 year old Jayce..
+  - Thanks for playing!
   storyT02List:
-  - ending two
-  - two
-  - 
-  - 
+  - You made it! You survived the trip and arrived in Turkey.
+  - Once in Turkey you followed the road to the nearest city and found some refugee
+    camp.
+  - You went to the lead of the camp and asked for shelter. They gave you a place
+    to stay and you were allowed to get a meal three times a day.
+  - A few days later you called home with the phone you took with you from the ship.
+    Mom answered.
+  - You heard mom sobbing and asked what was wrong, ..she said that dad had died because
+    of his injury.
+  - The house had been nearly completely destroyed but the bombing had stopped and
+    people were going back to their homes to see the damage that has been done.
+  - Mom said that she was going to grandma and that she probably wouldn't be able
+    to answer her phone for a while. You said it was okay and that you had to go.
+  - You stayed in the camp for five more weeks and eventually found a job in a city
+    nearby. You were doing good and was trying to forget about your parents.
+  - Even though you felt bad for your mom you were trying to start a new life here
+    in Turkey.
+  - This was the memory of the 21 year old Jayce..
+  - Thanks for playing!
   storyText: {fileID: 907606269}
   skipText: {fileID: 60568841}
   restartGameButton: {fileID: 825707459}
