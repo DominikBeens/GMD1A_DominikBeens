@@ -7369,12 +7369,26 @@ MonoBehaviour:
   - bass
   - herring
   - carp
+  - anchovy
+  - sunfish
+  - trout
+  - cod
+  - catfish
+  - sardine
+  - stingray
   - eel
   fishSprites:
   - {fileID: 21300000, guid: 1513a31b178e69446911b798585f8158, type: 3}
   - {fileID: 21300000, guid: f1a208e291d9f2744856aa7bbea11d89, type: 3}
   - {fileID: 21300000, guid: c128cfc419d92db4ca2ed7884d633710, type: 3}
   - {fileID: 21300000, guid: a9143052a5f036e4da848180064df355, type: 3}
+  - {fileID: 21300000, guid: 3082da21a363ca7468c060838070f929, type: 3}
+  - {fileID: 21300000, guid: 02b03bd3f43720e44a6ead9559a2615b, type: 3}
+  - {fileID: 21300000, guid: a8966185d0ed5a34b839e0ee20d4bd0f, type: 3}
+  - {fileID: 21300000, guid: 01173bcb00484264bae33680ebef73d6, type: 3}
+  - {fileID: 21300000, guid: 3b21119d2356e2e44bcf50063c6830d0, type: 3}
+  - {fileID: 21300000, guid: a14dcd62892597949818dbd1df18fca7, type: 3}
+  - {fileID: 21300000, guid: dda862b612f2a4541988bff3b4d02510, type: 3}
   - {fileID: 21300000, guid: f8a18b75746ea044db2bbda4262ca9dc, type: 3}
   listIndex: 0
 --- !u!1 &1373908138
@@ -9204,11 +9218,14 @@ MonoBehaviour:
   - Yes! Mom! Are you alright?
   - Hey mom, are you doing fine?
   - I'm so glad to hear that, I'm doing alright. How is dad doing?
-  - Thats cool, I'm fine. What's up with dad?
-  - 1
-  - 1
-  - 1
-  - 1
+  - That's cool, I'm fine. What's up with dad?
+  - That's good to hear! I'm sure he'll be fine.
+  - I understand, I guess I should get going. I've got work to do on this ship
+  - Yes, I've sailed pretty far already, there's water, food and even a fishing rod!
+  - Yes, I'm not that far out yet but that doesn't matter because theres enough resources
+    to survive here. I really should get going.
+  - I will! Goodbye mom.
+  - Yeah yeah, I'll call you. Bye mom.
   targetText:
   - 'Mom: Jayce!? Is that you?'
   - 'Mom: Jayce!?'
@@ -9219,10 +9236,15 @@ MonoBehaviour:
   - 'Mom: Look.. I know that I''ve sent you away so abruptly but that was the only
     way to make sure you''d survive. Dad.. is in a critical situation, I can''t tell
     you much right now.'
-  - 1
-  - 1
-  - 1
-  - 1
+  - 'Mom: Yes he will Jayce.. he will. ... Where are you right now? Have you found
+    a ship?'
+  - 'Mom: Wait! You''ve found a ship! Are you alone?'
+  - 'Mom: That''s very good to hear Jayce! I''m sure you''ll make it. I wish you succes
+    and call me when you''ve arrived alright?'
+  - 'Mom: Okay you''re pretty busy I hear, I understand.. I wish you succes and call
+    me when you''ve arrived alright?'
+  - 'Mom: Goodbye.'
+  - 'Mom: Bye..'
   listIndex: 0
 --- !u!1 &1766709174
 GameObject:

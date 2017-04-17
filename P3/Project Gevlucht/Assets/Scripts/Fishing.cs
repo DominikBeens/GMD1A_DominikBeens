@@ -40,7 +40,7 @@ public class Fishing : MonoBehaviour
             {
                 caughtFishChance = Random.value;
 
-                if (caughtFishChance <= 0.5f)
+                if (caughtFishChance <= 0.65f)
                 {
                     caughtFish = true;
                     listIndex = Random.Range(0, fish.Count);
@@ -90,7 +90,7 @@ public class Fishing : MonoBehaviour
             uim.fishingLoadbarFill.fillAmount += (Time.deltaTime / 5);
             yield return null;
 
-            if (uim.fishingLoadbarFill.fillAmount >= (randomBiteChance - 0.001f) && uim.fishingLoadbarFill.fillAmount <= (randomBiteChance + 0.001f))
+            if (uim.fishingLoadbarFill.fillAmount >= (randomBiteChance - 0.002f) && uim.fishingLoadbarFill.fillAmount <= (randomBiteChance + 0.002f))
             {
                 StartCoroutine(ChangeBarColor());
             }
