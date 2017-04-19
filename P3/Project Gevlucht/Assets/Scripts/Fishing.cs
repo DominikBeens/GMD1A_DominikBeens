@@ -24,6 +24,12 @@ public class Fishing : MonoBehaviour
     public List<Sprite> fishSprites = new List<Sprite>();
     public int listIndex;
 
+    public CameraMovement camMove;
+    public Camera cam;
+    public GameObject fishingPerspective;
+    public float moveSpeed = 3f;
+    public float turnSpeed = 3f;
+
     void Start()
     {
         randomBiteChance = Random.value;
@@ -165,10 +171,15 @@ public class Fishing : MonoBehaviour
             uim.triggerPanel.SetActive(false);
             StartCoroutine("Load");
         }
+
+        camMove.mainView = false;
+        cam.transform.position = Vector3.Lerp(cam.transform.position, fishingPerspective.transform.position, (moveSpeed * Time.deltaTime));
+        cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, fishingPerspective.transform.rotation, (turnSpeed * Time.deltaTime));
     }
 
     public void OnTriggerExit(Collider col)
     {
+        camMove.mainView = true;
         uim.triggerPanel.SetActive(false);
     }
 

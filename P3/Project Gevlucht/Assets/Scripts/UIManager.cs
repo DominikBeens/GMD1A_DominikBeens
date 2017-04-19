@@ -71,4 +71,7 @@ public class UIManager : MonoBehaviour
     public GameObject caughtFishPanel;
     public Text caughtText;
     public Image caughtImage;
+
+    [Header("Binoculars")]
+    public GameObject binocularsOverlay;
 }
