@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Binoculars : MonoBehaviour
+public class Binoculars : MonoBehaviour //NOT USING THIS SCRIPT RIGHT NOW
 {
 
     public UIManager uim;

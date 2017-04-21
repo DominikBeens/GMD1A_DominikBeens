@@ -10,7 +10,8 @@ public class Ladder : MonoBehaviour
     public Quest01 quest01;
     public Quest02 quest02;
 
-    public GameObject player;
+    public GameObject playerObject01;
+    public GameObject playerObject02;
 
     public bool canLoad;
 
@@ -42,7 +43,10 @@ public class Ladder : MonoBehaviour
     public IEnumerator Load()
     {
         //loadbarPanel.SetActive(true);
-        player.SetActive(false);
+        playerObject01.SetActive(false);
+        playerObject02.SetActive(false);
+        GameObject.FindWithTag("Player").GetComponent<CharacterMovement>().enabled = false;
+
         quest02.quest02Active = false;
         uim.triggerPanel.SetActive(false);
 
@@ -54,7 +58,10 @@ public class Ladder : MonoBehaviour
 
         if (uim.loadbarFill.fillAmount >= 0.99f)
         {
-            player.SetActive(true);
+            playerObject01.SetActive(true);
+            playerObject02.SetActive(true);
+            GameObject.FindWithTag("Player").GetComponent<CharacterMovement>().enabled = true;
+
             uim.loadbarFill.fillAmount = 0;
             //loadbarPanel.SetActive(false);
 

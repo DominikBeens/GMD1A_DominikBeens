@@ -76,7 +76,7 @@ public class IntroGameManager : MonoBehaviour
                 storyText.text = storyTList[i];
                 storyText.fontSize = 25;
 
-                skipText.text = ("Press or hold Space to continue");
+                skipText.text = ("Press or hold Space to continue\nor press Escape to skip");
                 skipText.fontSize = 15;
 
                 storyText.CrossFadeAlpha(1f, 1f, false);
