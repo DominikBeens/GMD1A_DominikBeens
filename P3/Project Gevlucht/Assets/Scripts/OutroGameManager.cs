@@ -27,6 +27,14 @@ public class OutroGameManager : MonoBehaviour
         StartCoroutine(StoryLoop());
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Intro");
+        }
+    }
+
     public IEnumerator StoryLoop()
     {
         restartGameButton.SetActive(false);

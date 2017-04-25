@@ -160,7 +160,7 @@ public class Fishing : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        uim.triggerPanelText.text = "Press E to start fishing";
+        uim.triggerPanelText.text = "Press E to start fishing\nand press Space to catch";
         uim.triggerPanel.SetActive(true);
     }
 
