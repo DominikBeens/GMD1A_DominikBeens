@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ShipInsideCol : MonoBehaviour
 {
     public GameObject mainCam;
     public GameObject insideCam;
 
-    public GameObject audioGO;
+    public AudioSource rainAudioSource;
+    public AudioMixerGroup mainGroup;
+    public AudioMixerGroup insideGroup;
 
     public void OnTriggerEnter(Collider col)
     {
@@ -16,7 +19,7 @@ public class ShipInsideCol : MonoBehaviour
             mainCam.SetActive(false);
             insideCam.SetActive(true);
 
-            audioGO.GetComponent<AudioLowPassFilter>().enabled = true;
+            rainAudioSource.outputAudioMixerGroup = insideGroup;
         }
     }
 
@@ -27,7 +30,7 @@ public class ShipInsideCol : MonoBehaviour
             insideCam.SetActive(false);
             mainCam.SetActive(true);
 
-            audioGO.GetComponent<AudioLowPassFilter>().enabled = false;
+            rainAudioSource.outputAudioMixerGroup = mainGroup;
         }
     }
 }
