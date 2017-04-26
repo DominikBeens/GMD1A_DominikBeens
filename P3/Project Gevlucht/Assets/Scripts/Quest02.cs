@@ -17,19 +17,19 @@ public class Quest02 : MonoBehaviour
         if (col.tag == "Player")
         {
             quest02Active = true;
-            StartCoroutine(Dialogue("'What was that? I heard something break downstairs.\nBetter find a hammer and go take a look.'", 8));
+            StartCoroutine(Dialogue("'What was that? I heard something break downstairs.\nBetter find a hammer and go take a look.'", 8f));
             questDescOn = true;
         }
     }
 
-    public IEnumerator Dialogue(string s, int i)
+    public IEnumerator Dialogue(string s, float f)
     {
         uim.dialogueTextObject.SetActive(true);
         uim.dialogueText.text = "" + s;
         uim.dialogueText.canvasRenderer.SetAlpha(0.01f);
         uim.dialogueText.CrossFadeAlpha(1f, 1f, false);
 
-        yield return new WaitForSeconds(i);
+        yield return new WaitForSeconds(f);
 
         uim.dialogueText.CrossFadeAlpha(0f, 1f, false);
 

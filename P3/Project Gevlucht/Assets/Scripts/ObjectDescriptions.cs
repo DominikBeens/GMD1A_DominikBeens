@@ -83,8 +83,14 @@ public class ObjectDescriptions : MonoBehaviour
 
     public void OnTriggerExit(Collider col)
     {
-        uim.triggerPanel.SetActive(false);
-        StartCoroutine(DialogueFadeOut());
+        if (descriptionsOn)
+        {
+            if (col.gameObject.layer == 8)
+            {
+                uim.triggerPanel.SetActive(false);
+                StartCoroutine(DialogueFadeOut());
+            }
+        }
     }
 
     public IEnumerator DialogueFadeIn(string s)
@@ -99,6 +105,8 @@ public class ObjectDescriptions : MonoBehaviour
 
     public IEnumerator DialogueFadeOut()
     {
+        yield return new WaitForSeconds(0.5f);
+
         uim.dialogueText.CrossFadeAlpha(0f, 1f, false);
 
         yield return new WaitForSeconds(1.0f);
