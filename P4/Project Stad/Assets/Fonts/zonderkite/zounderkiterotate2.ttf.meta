@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 841f87e537fbeca4b914af769f56e12c
+timeCreated: 1493817533
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Zounderkite Rotated 2
+  fontNames:
+  - Zounderkite Rotated 2
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 7c327f22a6e98054b9e3be49f5f42d8f
+timeCreated: 1493817533
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Zounderkite Engraved Italic
+  fontNames:
+  - Zounderkite Engraved Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

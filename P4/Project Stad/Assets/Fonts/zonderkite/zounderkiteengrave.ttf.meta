@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 9e110d368c01263469b907d11e196890
+timeCreated: 1493817533
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Zounderkite Engraved
+  fontNames:
+  - Zounderkite Engraved
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

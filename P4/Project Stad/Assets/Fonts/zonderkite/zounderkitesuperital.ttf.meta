@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f329715b8c472b04b9bd35c7299456c2
+timeCreated: 1493817534
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Zounderkite Super-Italic
+  fontNames:
+  - Zounderkite Super-Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

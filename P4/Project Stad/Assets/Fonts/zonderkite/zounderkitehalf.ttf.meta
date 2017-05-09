@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d1a0cfabaaf63f5429dbd97036900a9a
+timeCreated: 1493817534
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Zounderkite Halftone
+  fontNames:
+  - Zounderkite Halftone
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

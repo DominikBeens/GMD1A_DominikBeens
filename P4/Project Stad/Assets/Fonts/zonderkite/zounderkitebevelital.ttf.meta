@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f884ea46d790c304c836c14ff05277ad
+timeCreated: 1493817534
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Zounderkite Bevel Italic
+  fontNames:
+  - Zounderkite Bevel Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

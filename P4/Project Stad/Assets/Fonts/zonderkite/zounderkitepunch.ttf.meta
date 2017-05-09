@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 038c9acaa5b7e234293e7fa882922b4b
+timeCreated: 1493817533
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Zounderkite Punch
+  fontNames:
+  - Zounderkite Punch
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

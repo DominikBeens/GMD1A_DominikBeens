@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c3c2b5c65b9f34349867c1ca0840ae4e
+timeCreated: 1493817534
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Blindfold
+  fontNames:
+  - Blindfold
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
