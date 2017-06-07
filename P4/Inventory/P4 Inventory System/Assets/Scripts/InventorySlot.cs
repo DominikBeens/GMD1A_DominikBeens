@@ -11,9 +11,7 @@ public class InventorySlot : MonoBehaviour
     public GameObject statsPanel;
     public Text statsText;
     public bool panelActive;
-    public bool movingItem;
-
-    public Image itemDragImage;
+    public Sprite emptySlotImage;
 
     private void Update()
     {
@@ -22,9 +20,10 @@ public class InventorySlot : MonoBehaviour
             statsPanel.transform.position = Input.mousePosition;
         }
 
-        if (movingItem)
+        if (Inventory.movingItem)
         {
-            itemDragImage.transform.position = Input.mousePosition;
+            Inventory.itemBufferImage.transform.position = Input.mousePosition;
+            Inventory.itemBufferImage.sprite = Inventory.itemBuffer.item.itemSprite;
         }
 
         if (currentItem != null)
@@ -33,13 +32,12 @@ public class InventorySlot : MonoBehaviour
         }
         else if (currentItem == null)
         {
-            GetComponent<Image>().sprite = null;
+            GetComponent<Image>().sprite = emptySlotImage;
         }
     }
 
     public void MouseOver()
     {
-        print("mouse over inv slot");
         if (currentItem != null)
         {
             statsText.text = currentItem.item.itemName + "\n" + "Price: " + currentItem.item.itemPrice + "\n" + "Weight: " + currentItem.item.itemWeight;
@@ -50,18 +48,14 @@ public class InventorySlot : MonoBehaviour
 
     public void MouseClick()
     {
-        print("mouse clicked");
         if (!Inventory.itemHolding && currentItem != null)
         {
             Inventory.itemHolding = true;
             Inventory.itemBuffer = currentItem;
-
-            itemDragImage.sprite = currentItem.item.itemSprite;
-            itemDragImage.enabled = true;
-            movingItem = true;
+            Inventory.itemBufferImage.enabled = true;
+            Inventory.movingItem = true;
 
             currentItem = null;
-
 
             statsPanel.SetActive(false);
             panelActive = false;
@@ -73,17 +67,22 @@ public class InventorySlot : MonoBehaviour
             Inventory.itemHolding = false;
             currentItem = Inventory.itemBuffer;
             Inventory.itemBuffer = null;
-            movingItem = false;
+            Inventory.movingItem = false;
 
-            itemDragImage.enabled = false;
+            Inventory.itemBufferImage.enabled = false;
 
             print("and put item in" + gameObject.name);
+        }
+        else if (Inventory.itemHolding && currentItem != null)
+        {
+            Inventory.itemSwapVar = currentItem;
+            currentItem = Inventory.itemBuffer;
+            Inventory.itemBuffer = Inventory.itemSwapVar;
         }
     }
 
     public void MouseExit()
     {
-        print("mouse exited inv slot");
         statsPanel.SetActive(false);
         panelActive = false;
     }
