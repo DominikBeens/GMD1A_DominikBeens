@@ -14,12 +14,15 @@ public class Inventory : MonoBehaviour
     public static Entity itemBuffer;
     public static Entity itemSwapVar;
     public static Image itemBufferImage;
+    public static int quantityItemHolding;
+    public static int quantitySwapVar;
+    public static bool canUnstack;
 
     private void Start()
     {
         itemSlotLayoutGroup = transform.GetChild(0);
 
-        //Creating an Image to display what item were dragging
+        //Creating an image to display what item were dragging
         itemBufferImage = new GameObject().AddComponent<Image>();
         itemBufferImage.raycastTarget = false;
         itemBufferImage.transform.SetParent(transform);
@@ -31,6 +34,24 @@ public class Inventory : MonoBehaviour
             {
                 inventorySlot.Add(child.GetChild(0).GetComponent<InventorySlot>());
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (movingItem)
+        {
+            itemBufferImage.sprite = itemBuffer.item.itemSprite;
+            itemBufferImage.transform.position = Input.mousePosition;
+        }
+
+        if (Input.GetButton("Sprint"))
+        {
+            canUnstack = true;
+        }
+        else
+        {
+            canUnstack = false;
         }
     }
 
