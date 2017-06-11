@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Addtoinv : MonoBehaviour
 {
-    public Inventory inventory;
+    private Inventory inventory;
 
     private void Start()
     {
-        StartCoroutine(Test());
-    }
-
-    public IEnumerator Test()
-    {
-        yield return new WaitForSeconds(1);
+        inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
         inventory.AddItem(gameObject);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-
+    //inventory stuff
     public List<InventorySlot> inventorySlot = new List<InventorySlot>();
     public Transform itemSlotLayoutGroup;
 
@@ -17,6 +17,10 @@ public class Inventory : MonoBehaviour
     public static int quantityItemHolding;
     public static int quantitySwapVar;
     public static bool canUnstack;
+
+    //add item
+    public List<GameObject> items = new List<GameObject>();
+    public int randomItemNumber;
 
     private void Start()
     {
@@ -55,6 +59,36 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void AddRandomItem()
+    {
+        randomItemNumber = Random.Range(0, items.Count);
+        Instantiate(items[randomItemNumber], transform.position, Quaternion.identity);
+    }
+
+    public void DeleteItem()
+    {
+        if (itemBuffer != null)
+        {
+            Destroy(itemBuffer.gameObject);
+            itemBuffer = null;
+            itemBufferImage.enabled = false;
+            itemHolding = false;
+            movingItem = false;
+        }
+    }
+
+    public void DeleteAllItems()
+    {
+        foreach (Transform child in itemSlotLayoutGroup)
+        {
+            if (child.GetChild(0).GetComponent<InventorySlot>().currentItem != null)
+            {
+                Destroy(child.GetChild(0).GetComponent<InventorySlot>().currentItem.gameObject);
+            }
+        }
+    }
+
+    //function to call from an item you want to add to the inventory
     public void AddItem(GameObject item)
     {
         for (int i = 0; i < inventorySlot.Count; i++)
