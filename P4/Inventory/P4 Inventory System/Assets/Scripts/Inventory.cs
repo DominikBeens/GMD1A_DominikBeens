@@ -9,6 +9,8 @@ public class Inventory : MonoBehaviour
     public List<InventorySlot> inventorySlot = new List<InventorySlot>();
     public Transform itemSlotLayoutGroup;
 
+    public GameObject inventory;
+    public bool inventoryOpen;
     public static bool itemHolding;
     public static bool movingItem;
     public static Entity itemBuffer;
@@ -24,7 +26,8 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        itemSlotLayoutGroup = transform.GetChild(0);
+        inventory = transform.GetChild(0).gameObject;
+        itemSlotLayoutGroup = transform.GetChild(0).transform.GetChild(0);
 
         //Creating an image to display what item were dragging
         itemBufferImage = new GameObject().AddComponent<Image>();
@@ -102,6 +105,20 @@ public class Inventory : MonoBehaviour
                 }
                 return;
             }
+        }
+    }
+
+    public void ToggleInventory()
+    {
+        if (inventoryOpen)
+        {
+            inventory.SetActive(false);
+            inventoryOpen = false;
+        }
+        else if (!inventoryOpen)
+        {
+            inventory.SetActive(true);
+            inventoryOpen = true;
         }
     }
 }
