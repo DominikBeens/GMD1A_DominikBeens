@@ -7,24 +7,23 @@ using UnityEngine.EventSystems;
 public class InventorySlot : MonoBehaviour
 {
 
+    private Inventory inv;
     public Entity currentItem;
-    public GameObject statsPanel;
-    public Text statsText;
-    public bool panelActive;
     public Sprite emptySlotImage;
     public int quantity = 1;
     public Text quantityText;
 
     private void Start()
     {
+        inv = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
         quantityText = GetComponentInChildren<Text>();
     }
 
     private void Update()
     {
-        if (panelActive)
+        if (inv.statsPanel.activeInHierarchy)
         {
-            statsPanel.transform.position = Input.mousePosition;
+            inv.statsPanel.transform.position = Input.mousePosition;
         }
 
         if (currentItem != null)
@@ -50,28 +49,25 @@ public class InventorySlot : MonoBehaviour
     {
         if (currentItem != null)
         {
-            statsText.text = currentItem.item.itemName + "\n" + "Price: " + currentItem.item.itemPrice + "\n" + "Weight: " + currentItem.item.itemWeight;
-            statsPanel.SetActive(true);
-            panelActive = true;
+            inv.statsText.text = currentItem.item.itemName + "\n" + "Price: " + currentItem.item.itemPrice + "\n" + "Weight: " + currentItem.item.itemWeight;
+            inv.statsPanel.SetActive(true);
         }
     }
 
     public void MouseClick()
     {
-        if (!Inventory.itemHolding && currentItem != null)
+        //if youre not holding an item and theres an item in the slot you pick it up or unstack it if youre holding shift
+        if (!Inventory.holdingItem && currentItem != null)
         {
             if (!Inventory.canUnstack)
             {
-                Inventory.itemHolding = true;
+                Inventory.holdingItem = true;
                 Inventory.itemBuffer = currentItem;
-                Inventory.movingItem = true;
-                Inventory.itemBufferImage.enabled = true;
+                inv.itemBufferImage.enabled = true;
                 currentItem = null;
                 Inventory.quantityItemHolding = quantity;
                 quantity = 1;
-
-                statsPanel.SetActive(false);
-                panelActive = false;
+                inv.statsPanel.SetActive(false);
             }
             else if (Inventory.canUnstack)
             {
@@ -79,24 +75,24 @@ public class InventorySlot : MonoBehaviour
                 {
                     Inventory.itemBuffer = currentItem;
                     Inventory.quantityItemHolding = 1;
-                    Inventory.itemHolding = true;
-                    Inventory.itemBufferImage.enabled = true;
-                    Inventory.movingItem = true;
+                    Inventory.holdingItem = true;
+                    inv.itemBufferImage.enabled = true;
                     quantity--;
                 }
             }
         }
-        else if (Inventory.itemHolding && currentItem == null)
+        //if youre holding an item and theres no item in the slot you put your item in it
+        else if (Inventory.holdingItem && currentItem == null)
         {
-            Inventory.itemHolding = false;
+            Inventory.holdingItem = false;
             currentItem = Inventory.itemBuffer;
             Inventory.itemBuffer = null;
-            Inventory.itemBufferImage.enabled = false;
-            Inventory.movingItem = false;
+            inv.itemBufferImage.enabled = false;
             quantity = Inventory.quantityItemHolding;
 
         }
-        else if (Inventory.itemHolding && currentItem != null)
+        //if youre holding an item but there is already something in the slot you switch it out with the item youre holding, or you stack the item
+        else if (Inventory.holdingItem && currentItem != null)
         {
             if (!Inventory.itemBuffer.item.canStack || Inventory.itemBuffer.item.canStack && !currentItem.item.canStack)
             {
@@ -110,9 +106,8 @@ public class InventorySlot : MonoBehaviour
             else if (Inventory.itemBuffer.item.canStack && currentItem.item.canStack)
             {
                 Inventory.itemBuffer = null;
-                Inventory.itemBufferImage.enabled = false;
-                Inventory.movingItem = false;
-                Inventory.itemHolding = false;
+                inv.itemBufferImage.enabled = false;
+                Inventory.holdingItem = false;
 
                 if (currentItem.item.canStack && Inventory.quantityItemHolding == 1)
                 {
@@ -128,7 +123,6 @@ public class InventorySlot : MonoBehaviour
 
     public void MouseExit()
     {
-        statsPanel.SetActive(false);
-        panelActive = false;
+        inv.statsPanel.SetActive(false);
     }
 }

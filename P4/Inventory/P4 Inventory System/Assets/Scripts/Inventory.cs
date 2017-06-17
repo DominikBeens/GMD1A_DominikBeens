@@ -5,35 +5,31 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    //inventory stuff
+    [Header("Inventory")]
     public List<InventorySlot> inventorySlot = new List<InventorySlot>();
     public Transform itemSlotLayoutGroup;
 
-    public GameObject inventory;
+    public GameObject inventoryPanel;
     public bool inventoryOpen;
-    public static bool itemHolding;
-    public static bool movingItem;
+    public static bool holdingItem;
     public static Entity itemBuffer;
     public static Entity itemSwapVar;
-    public static Image itemBufferImage;
+    public Image itemBufferImage;
     public static int quantityItemHolding;
     public static int quantitySwapVar;
     public static bool canUnstack;
 
-    //add item
+    [Header("Stats")]
+    public GameObject statsPanel;
+    public Text statsText;
+
+    [Header("Items")]
     public List<GameObject> items = new List<GameObject>();
     public int randomItemNumber;
 
     private void Start()
     {
-        inventory = transform.GetChild(0).gameObject;
-        itemSlotLayoutGroup = transform.GetChild(0).transform.GetChild(0);
-
-        //Creating an image to display what item were dragging
-        itemBufferImage = new GameObject().AddComponent<Image>();
-        itemBufferImage.raycastTarget = false;
-        itemBufferImage.transform.SetParent(transform);
-        itemBufferImage.enabled = false;
+        inventoryPanel = transform.GetChild(0).gameObject;
 
         foreach (Transform child in itemSlotLayoutGroup)
         {
@@ -46,7 +42,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (movingItem)
+        if (holdingItem)
         {
             itemBufferImage.sprite = itemBuffer.item.itemSprite;
             itemBufferImage.transform.position = Input.mousePosition;
@@ -75,8 +71,7 @@ public class Inventory : MonoBehaviour
             Destroy(itemBuffer.gameObject);
             itemBuffer = null;
             itemBufferImage.enabled = false;
-            itemHolding = false;
-            movingItem = false;
+            holdingItem = false;
         }
     }
 
@@ -87,6 +82,7 @@ public class Inventory : MonoBehaviour
             if (child.GetChild(0).GetComponent<InventorySlot>().currentItem != null)
             {
                 Destroy(child.GetChild(0).GetComponent<InventorySlot>().currentItem.gameObject);
+                child.GetChild(0).GetComponent<InventorySlot>().quantity = 1;
             }
         }
     }
@@ -112,12 +108,12 @@ public class Inventory : MonoBehaviour
     {
         if (inventoryOpen)
         {
-            inventory.SetActive(false);
+            inventoryPanel.SetActive(false);
             inventoryOpen = false;
         }
         else if (!inventoryOpen)
         {
-            inventory.SetActive(true);
+            inventoryPanel.SetActive(true);
             inventoryOpen = true;
         }
     }
