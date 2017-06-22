@@ -27,6 +27,15 @@ public class Inventory : MonoBehaviour
     public List<GameObject> items = new List<GameObject>();
     public int randomItemNumber;
 
+    [Header("Item Preview")]
+    public bool canPreviewItem;
+    public bool previewPanelActive;
+    public GameObject itemPreviewPanel;
+    public Transform itemPreviewSpawn;
+    public GameObject slotHoveredOver;
+    public GameObject spawnedPreviewItem;
+    public bool rotateItemPreview;
+
     private void Start()
     {
         inventoryPanel = transform.GetChild(0).gameObject;
@@ -87,7 +96,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //function to call from an item you want to add to the inventory
+    // function to call from an item you want to add to the inventory, for when you pick it up etc
     public void AddItem(GameObject item)
     {
         for (int i = 0; i < inventorySlot.Count; i++)

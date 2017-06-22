@@ -43,6 +43,47 @@ public class InventorySlot : MonoBehaviour
         {
             quantityText.text = null;
         }
+
+        // item preview
+        if (inv.canPreviewItem && !inv.previewPanelActive)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                inv.itemPreviewPanel.SetActive(true);
+                inv.previewPanelActive = true;
+
+                if (inv.itemPreviewSpawn.childCount == 0)
+                {
+                    inv.spawnedPreviewItem = Instantiate(inv.slotHoveredOver.GetComponent<InventorySlot>().currentItem.item.itemPrefab, inv.itemPreviewSpawn.position, Quaternion.identity);
+                    inv.spawnedPreviewItem.transform.SetParent(inv.itemPreviewSpawn);
+                    inv.spawnedPreviewItem.GetComponent<Addtoinv>().enabled = false;
+                    inv.rotateItemPreview = true;
+                }
+                else if (inv.itemPreviewSpawn.childCount > 0)
+                {
+                    Destroy(inv.itemPreviewSpawn.GetChild(0).gameObject);
+                    inv.spawnedPreviewItem = Instantiate(inv.slotHoveredOver.GetComponent<InventorySlot>().currentItem.item.itemPrefab, inv.itemPreviewSpawn.position, Quaternion.identity);
+                    inv.spawnedPreviewItem.transform.SetParent(inv.itemPreviewSpawn);
+                    inv.spawnedPreviewItem.GetComponent<Addtoinv>().enabled = false;
+                    inv.rotateItemPreview = true;
+                }
+            }
+
+        }
+        if (inv.previewPanelActive)
+        {
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                inv.itemPreviewPanel.SetActive(false);
+                inv.previewPanelActive = false;
+                inv.rotateItemPreview = false;
+            }
+        }
+
+        if (inv.rotateItemPreview)
+        {
+            inv.spawnedPreviewItem.transform.Rotate(new Vector3(0, 1 * Time.deltaTime, 0));
+        }
     }
 
     public void MouseOver()
@@ -51,12 +92,18 @@ public class InventorySlot : MonoBehaviour
         {
             inv.statsText.text = currentItem.item.itemName + "\n" + "Price: " + currentItem.item.itemPrice + "\n" + "Weight: " + currentItem.item.itemWeight;
             inv.statsPanel.SetActive(true);
+            inv.slotHoveredOver = this.gameObject;
+
+            if (!Inventory.holdingItem)
+            {
+                inv.canPreviewItem = true;
+            }
         }
     }
 
     public void MouseClick()
     {
-        //if youre not holding an item and theres an item in the slot you pick it up or unstack it if youre holding shift
+        // if youre not holding an item and theres an item in the slot you pick it up or unstack it if youre holding shift
         if (!Inventory.holdingItem && currentItem != null)
         {
             if (!Inventory.canUnstack)
@@ -81,7 +128,7 @@ public class InventorySlot : MonoBehaviour
                 }
             }
         }
-        //if youre holding an item and theres no item in the slot you put your item in it
+        // if youre holding an item and theres no item in the slot you put your item in it
         else if (Inventory.holdingItem && currentItem == null)
         {
             Inventory.holdingItem = false;
@@ -91,7 +138,7 @@ public class InventorySlot : MonoBehaviour
             quantity = Inventory.quantityItemHolding;
 
         }
-        //if youre holding an item but there is already something in the slot you switch it out with the item youre holding, or you stack the item
+        // if youre holding an item but there is already something in the slot you switch it out with the item youre holding, or you stack the item
         else if (Inventory.holdingItem && currentItem != null)
         {
             if (!Inventory.itemBuffer.item.canStack || Inventory.itemBuffer.item.canStack && !currentItem.item.canStack)
@@ -124,5 +171,6 @@ public class InventorySlot : MonoBehaviour
     public void MouseExit()
     {
         inv.statsPanel.SetActive(false);
+        inv.canPreviewItem = false;
     }
 }
