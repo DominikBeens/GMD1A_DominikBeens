@@ -150,7 +150,7 @@ public class InventorySlot : MonoBehaviour
                 Inventory.itemBuffer = Inventory.itemSwapVar;
                 Inventory.quantityItemHolding = Inventory.quantitySwapVar;
             }
-            else if (Inventory.itemBuffer.item.canStack && currentItem.item.canStack)
+            else if (Inventory.itemBuffer.item.canStack && currentItem.item.canStack && Inventory.itemBuffer.item.itemID == currentItem.item.itemID)
             {
                 Inventory.itemBuffer = null;
                 inv.itemBufferImage.enabled = false;

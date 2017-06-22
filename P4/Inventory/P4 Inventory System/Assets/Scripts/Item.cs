@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Item
 {
 
+    public int itemID;
+
     public GameObject itemPrefab;
 
     public Sprite itemSprite;
