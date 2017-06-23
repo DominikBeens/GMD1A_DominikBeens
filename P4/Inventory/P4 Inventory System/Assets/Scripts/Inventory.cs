@@ -115,8 +115,14 @@ public class Inventory : MonoBehaviour
 
     public void ToggleInventory()
     {
-        if (inventoryOpen)
+        if (inventoryOpen && !holdingItem)
         {
+            if (previewPanelActive)
+            {
+                itemPreviewPanel.SetActive(false);
+                previewPanelActive = false;
+                rotateItemPreview = false;
+            }
             inventoryPanel.SetActive(false);
             inventoryOpen = false;
         }

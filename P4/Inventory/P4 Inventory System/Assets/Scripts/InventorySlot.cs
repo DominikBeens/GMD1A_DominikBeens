@@ -45,7 +45,7 @@ public class InventorySlot : MonoBehaviour
         }
 
         // item preview
-        if (inv.canPreviewItem && !inv.previewPanelActive)
+        if (inv.canPreviewItem && !inv.previewPanelActive && !Inventory.itemBuffer)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -103,69 +103,90 @@ public class InventorySlot : MonoBehaviour
 
     public void MouseClick()
     {
-        // if youre not holding an item and theres an item in the slot you pick it up or unstack it if youre holding shift
         if (!Inventory.holdingItem && currentItem != null)
         {
             if (!Inventory.canUnstack)
             {
-                Inventory.holdingItem = true;
-                Inventory.itemBuffer = currentItem;
-                inv.itemBufferImage.enabled = true;
-                currentItem = null;
-                Inventory.quantityItemHolding = quantity;
-                quantity = 1;
-                inv.statsPanel.SetActive(false);
+                PickUpItem();
             }
             else if (Inventory.canUnstack)
             {
                 if (currentItem.item.canStack && quantity > 1)
                 {
-                    Inventory.itemBuffer = currentItem;
-                    Inventory.quantityItemHolding = 1;
-                    Inventory.holdingItem = true;
-                    inv.itemBufferImage.enabled = true;
-                    quantity--;
+                    UnstackItem();
                 }
             }
         }
-        // if youre holding an item and theres no item in the slot you put your item in it
         else if (Inventory.holdingItem && currentItem == null)
         {
-            Inventory.holdingItem = false;
-            currentItem = Inventory.itemBuffer;
-            Inventory.itemBuffer = null;
-            inv.itemBufferImage.enabled = false;
-            quantity = Inventory.quantityItemHolding;
-
+            PlaceItem();
         }
-        // if youre holding an item but there is already something in the slot you switch it out with the item youre holding, or you stack the item
         else if (Inventory.holdingItem && currentItem != null)
         {
             if (!Inventory.itemBuffer.item.canStack || Inventory.itemBuffer.item.canStack && !currentItem.item.canStack)
             {
-                Inventory.itemSwapVar = currentItem;
-                Inventory.quantitySwapVar = quantity;
-                currentItem = Inventory.itemBuffer;
-                quantity = Inventory.quantityItemHolding;
-                Inventory.itemBuffer = Inventory.itemSwapVar;
-                Inventory.quantityItemHolding = Inventory.quantitySwapVar;
+                SwitchItem();
             }
             else if (Inventory.itemBuffer.item.canStack && currentItem.item.canStack && Inventory.itemBuffer.item.itemID == currentItem.item.itemID)
             {
-                Inventory.itemBuffer = null;
-                inv.itemBufferImage.enabled = false;
-                Inventory.holdingItem = false;
-
-                if (currentItem.item.canStack && Inventory.quantityItemHolding == 1)
-                {
-                    quantity++;
-                }
-                else if (currentItem.item.canStack && Inventory.quantityItemHolding >= 1)
-                {
-                    quantity += Inventory.quantityItemHolding;
-                }
+                StackItem();
             }
         }
+    }
+
+    public void PickUpItem()
+    {
+        Inventory.holdingItem = true;
+        Inventory.itemBuffer = currentItem;
+        inv.itemBufferImage.enabled = true;
+        currentItem = null;
+        Inventory.quantityItemHolding = quantity;
+        quantity = 1;
+        inv.statsPanel.SetActive(false);
+    }
+
+    public void PlaceItem()
+    {
+        Inventory.holdingItem = false;
+        currentItem = Inventory.itemBuffer;
+        Inventory.itemBuffer = null;
+        inv.itemBufferImage.enabled = false;
+        quantity = Inventory.quantityItemHolding;
+    }
+
+    public void SwitchItem()
+    {
+        Inventory.itemSwapVar = currentItem;
+        Inventory.quantitySwapVar = quantity;
+        currentItem = Inventory.itemBuffer;
+        quantity = Inventory.quantityItemHolding;
+        Inventory.itemBuffer = Inventory.itemSwapVar;
+        Inventory.quantityItemHolding = Inventory.quantitySwapVar;
+    }
+
+    public void StackItem()
+    {
+        Inventory.itemBuffer = null;
+        inv.itemBufferImage.enabled = false;
+        Inventory.holdingItem = false;
+
+        if (currentItem.item.canStack && Inventory.quantityItemHolding == 1)
+        {
+            quantity++;
+        }
+        else if (currentItem.item.canStack && Inventory.quantityItemHolding >= 1)
+        {
+            quantity += Inventory.quantityItemHolding;
+        }
+    }
+
+    public void UnstackItem()
+    {
+        Inventory.itemBuffer = currentItem;
+        Inventory.quantityItemHolding = 1;
+        Inventory.holdingItem = true;
+        inv.itemBufferImage.enabled = true;
+        quantity--;
     }
 
     public void MouseExit()

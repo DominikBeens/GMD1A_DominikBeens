@@ -11,4 +11,6 @@ public class Addtoinv : MonoBehaviour
         inventory = GameObject.FindWithTag("Inventory").GetComponent<Inventory>();
         inventory.AddItem(gameObject);
     }
+
+    // dit heb ik ff op de items gezet om ze automatisch in de inventory te gooien als ze worden geinstantiate
 }
